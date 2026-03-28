@@ -147,6 +147,8 @@ main.jsx
 - Todos.jsx (receives todos array)
 - Todo.jsx × N (each card calls deleteTodo or completeTodo)
 
+---
+
 ## 🎨 Design Highlights
 
 - **Background:** Pure black (`#000000`)
