@@ -24,6 +24,23 @@ A clean, responsive **Todo App** built with **React** and **CSS Modules**, featu
 
 ---
 
+## Project Structure
+
+```
+src/
+├── App.jsx
+├── App.module.css
+├── index.css
+├── main.jsx
+└── Components/
+    ├── TodoForm.jsx
+    ├── TodoForm.module.css
+    ├── Todos.jsx
+    ├── Todos.module.css
+    ├── Todo.jsx
+    └── Todo.module.css
+```
+
 ## Getting Started
 
 ### Prerequisites
