@@ -16,11 +16,11 @@ A clean, responsive **Todo App** built with **React** and **CSS Modules**, featu
 
 ## Tech Stack
 
-React 18: UI library & component architecture
-CSS Modules: Scoped, maintainable styling
-React Hooks (`useState`): Local state management
-`crypto.randomUUID()`: Unique ID generation for todos
-Vite: Build tool & dev server
+- **React 18** — UI library & component architecture
+- **CSS Modules** — Scoped, maintainable styling
+- **React Hooks (`useState`)** — Local state management
+- **`crypto.randomUUID()`** — Unique ID generation for todos
+- **Vite** — Build tool & dev server
 
 ---
 
