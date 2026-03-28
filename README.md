@@ -76,7 +76,7 @@ npm run build
 
 ---
 
-## 🧩 Component Flow & Architecture
+## Component Flow & Architecture
 
 Here is how the app works from top to bottom — follow this to understand the complete data flow.
 
@@ -98,18 +98,19 @@ This is the **single source of truth** for the entire app. It owns the `todos` s
   title: "Learn React", // the text the user typed
   completed: false       // toggled true/false when marked complete
 }
-` ``
+```
 
 `App.jsx` also defines two handler functions and passes everything down as props:
 
 - **`deleteTodo(id)`** — filters out the todo whose `id` matches, updating the state with the remaining todos.
+
 - **`completeTodo(id)`** — maps over todos and flips the `completed` boolean for the matching todo, leaving all others unchanged.
 
 It renders two child components: `<TodoForm />` to add new todos, and `<Todos />` to display them.
 
 ---
 
-### 3. `TodoForm.jsx` — Adding a Todo ➕
+### 3. `TodoForm.jsx` — Adding a Todo
 
 This component manages its own local `title` state for the input field (controlled input). Here is what happens when a user submits:
 
@@ -138,22 +139,13 @@ This is the smallest unit of the app — one todo row. It receives a single todo
 ---
 
 ### 🔄 Full Data Flow Summary
-```
-
-```
 
 main.jsx
-└── App.jsx (owns todos state, deleteTodo, completeTodo)
-├── TodoForm.jsx (adds new todo → calls setTodos)
-└── Todos.jsx (receives todos array)
-└── Todo.jsx × N (each card calls deleteTodo or completeTodo)
-` ``
 
-> **Key concept:** Data flows **down** via props, and actions flow **up** via callback functions. `App.jsx` is the only component that directly modifies the `todos` state.
-
-```
-
-> ⚠️ **Note:** Remove the space in ` `` ` — I had to add it so it didn't break the formatting here in chat. Both occurrences should be ` ``` ` with no space.
+- App.jsx (owns todos state, deleteTodo, completeTodo)
+- TodoForm.jsx (adds new todo → calls setTodos)
+- Todos.jsx (receives todos array)
+- Todo.jsx × N (each card calls deleteTodo or completeTodo)
 
 ## 🎨 Design Highlights
 
@@ -162,9 +154,3 @@ main.jsx
 - **Todo Cards:** Dark gray (`#333`) with rounded corners
 - **Font:** Segoe UI / system sans-serif stack
 - **Input:** Pill-shaped with glowing cyan focus ring
-
----
-
-```
-
-```
