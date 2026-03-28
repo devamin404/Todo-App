@@ -1,0 +1,12 @@
+.container {
+  max-width: 1500px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.todoList {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

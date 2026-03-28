@@ -1,0 +1,138 @@
+.todoForm {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.todoHeading {
+  color: rgb(0, 255, 234);
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.todoFormContainer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  width: 96%;
+}
+
+.todoInput {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  background-color: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 50px;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.todoInput::placeholder {
+  color: #969696;
+}
+
+.todoInput:focus {
+  border-color: rgb(0, 255, 234);
+  box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
+}
+
+.todoBtn {
+  padding: 1.1rem 2rem;
+  margin-left: -6.7rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: rgb(0, 255, 234);
+  color: black;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.1rem;
+}
+
+.todoBtn:hover {
+  transform: scale(1.05);
+  background-color: rgb(0, 220, 200);
+}
+
+/* Responsive Design */
+@media (max-width: 1500px) {
+  .todoForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .todoHeading {
+    font-size: 2.5rem;
+  }
+
+  .todoInput {
+    width: 70%;
+  }
+
+  .todoFormContainer button {
+    width: 20%;
+  }
+}
+
+@media (max-width: 700px) {
+  .todoFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .todoInput {
+    width: 100%;
+  }
+
+  .todoFormContainer button {
+    padding: 0.8rem 3rem;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .todoHeading {
+    font-size: 2rem;
+  }
+
+  .todoFormContainer button {
+    padding: 0.8rem 2.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .todoHeading {
+    font-size: 2rem;
+  }
+
+  .todoInput {
+    padding: 0.9rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .todoBtn {
+    padding: 0.5rem 3rem;
+    font-size: 0.9rem;
+  }
+
+  .todoInput::placeholder {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .todoInput::placeholder {
+    font-size: 0.7rem;
+  }
+}

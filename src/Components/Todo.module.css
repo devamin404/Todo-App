@@ -1,0 +1,28 @@
+.todoContainer {
+  position: relative;
+  background-color: #333;
+  color: white;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.todoContainer button {
+  cursor: pointer;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #a5a5a5;
+  text-decoration-color: #5c5c5c;
+}
