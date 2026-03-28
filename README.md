@@ -26,18 +26,18 @@ A clean, responsive **Todo App** built with **React** and **CSS Modules**, featu
 
 ## Project Structure
 
-src/
-├── App.jsx # Root component — manages todos state & handlers
-├── App.module.css # Root layout styles
-├── index.css # Global reset & base styles
-├── main.jsx # React DOM entry point
-└── Components/
-├── TodoForm.jsx # Input form for adding new todos
-├── TodoForm.module.css # Form styles (input, button, heading)
-├── Todos.jsx # Renders the list of Todo items
-├── Todos.module.css # List container styles
-├── Todo.jsx # Individual todo item (complete/delete)
-└── Todo.module.css # Todo item styles
+- `src/`
+  - `App.jsx` — Root component, manages todos state & handlers
+  - `App.module.css` — Root layout styles
+  - `index.css` — Global reset & base styles
+  - `main.jsx` — React DOM entry point
+  - `Components/`
+    - `TodoForm.jsx` — Input form for adding new todos
+    - `TodoForm.module.css` — Form styles (input, button, heading)
+    - `Todos.jsx` — Renders the list of Todo items
+    - `Todos.module.css` — List container styles
+    - `Todo.jsx` — Individual todo item (complete/delete)
+    - `Todo.module.css` — Todo item styles
 
 ## Getting Started
 
