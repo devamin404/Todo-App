@@ -76,25 +76,84 @@ npm run build
 
 ---
 
-## 🧩 Component Overview
+## 🧩 Component Flow & Architecture
 
-### `App.jsx`
-
-The root component. Holds the `todos` array in state and passes down `deleteTodo` and `completeTodo` handler functions as props.
-
-### `TodoForm.jsx`
-
-Contains a controlled text input and an ADD button. Validates input before creating a new todo object with a unique UUID and appending it to the list.
-
-### `Todos.jsx`
-
-Maps over the todos array and renders an individual `<Todo />` component for each item.
-
-### `Todo.jsx`
-
-Displays a single todo with its title, a **Complete** button to toggle the strikethrough style, and a **Delete** button to remove it.
+Here is how the app works from top to bottom — follow this to understand the complete data flow.
 
 ---
+
+### 1. `main.jsx` — Entry Point
+
+This is where React starts. It grabs the `#root` div from `index.html` and mounts the entire app inside it by rendering `<App />`. Nothing else lives here.
+
+---
+
+### 2. `App.jsx` — The Brain 🧠
+
+This is the **single source of truth** for the entire app. It owns the `todos` state — an array that holds every todo object. Each todo looks like this:
+
+```js
+{
+  id: "a3f1c...",       // unique ID from crypto.randomUUID()
+  title: "Learn React", // the text the user typed
+  completed: false       // toggled true/false when marked complete
+}
+` ``
+
+`App.jsx` also defines two handler functions and passes everything down as props:
+
+- **`deleteTodo(id)`** — filters out the todo whose `id` matches, updating the state with the remaining todos.
+- **`completeTodo(id)`** — maps over todos and flips the `completed` boolean for the matching todo, leaving all others unchanged.
+
+It renders two child components: `<TodoForm />` to add new todos, and `<Todos />` to display them.
+
+---
+
+### 3. `TodoForm.jsx` — Adding a Todo ➕
+
+This component manages its own local `title` state for the input field (controlled input). Here is what happens when a user submits:
+
+1. User types in the input field → `title` state updates on every keystroke via `onChange`
+2. User clicks **ADD** or presses **Enter** → `handleSubmit` fires
+3. If the input is empty or only spaces → an alert is shown and nothing is added
+4. If valid → a new todo object is created with a unique UUID and `completed: false`
+5. The new todo is appended to the existing list via `setTodos` (received as a prop from `App.jsx`)
+6. The input field is cleared back to an empty string
+
+---
+
+### 4. `Todos.jsx` — The List Container 📋
+
+This component receives the `todos` array and both handler functions as props. It simply loops over every todo using `.map()` and renders a `<Todo />` component for each one. It passes along `deleteTodo` and `completeTodo` so each individual todo card can trigger them.
+
+---
+
+### 5. `Todo.jsx` — A Single Todo Card 🃏
+
+This is the smallest unit of the app — one todo row. It receives a single todo's `title`, `id`, and `completed` status as props. Here is what each button does:
+
+- **Complete button** → calls `completeTodo(id)`, which goes back up to `App.jsx` and flips `completed` to `true` or `false`. When `completed` is `true`, a CSS class is applied that adds a strikethrough to the title.
+- **Delete button** → calls `deleteTodo(id)`, which goes back up to `App.jsx` and removes this todo from the state array entirely, causing it to disappear from the UI.
+
+---
+
+### 🔄 Full Data Flow Summary
+```
+
+```
+
+main.jsx
+└── App.jsx (owns todos state, deleteTodo, completeTodo)
+├── TodoForm.jsx (adds new todo → calls setTodos)
+└── Todos.jsx (receives todos array)
+└── Todo.jsx × N (each card calls deleteTodo or completeTodo)
+` ``
+
+> **Key concept:** Data flows **down** via props, and actions flow **up** via callback functions. `App.jsx` is the only component that directly modifies the `todos` state.
+
+```
+
+> ⚠️ **Note:** Remove the space in ` `` ` — I had to add it so it didn't break the formatting here in chat. Both occurrences should be ` ``` ` with no space.
 
 ## 🎨 Design Highlights
 
@@ -105,3 +164,7 @@ Displays a single todo with its title, a **Complete** button to toggle the strik
 - **Input:** Pill-shaped with glowing cyan focus ring
 
 ---
+
+```
+
+```
