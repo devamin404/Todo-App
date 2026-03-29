@@ -149,10 +149,16 @@ main.jsx
 
 ---
 
-## 🎨 Design Highlights
+## Design Highlights
 
 - **Background:** Pure black (`#000000`)
 - **Accent Color:** Cyan (`rgb(0, 255, 234)`)
 - **Todo Cards:** Dark gray (`#333`) with rounded corners
 - **Font:** Segoe UI / system sans-serif stack
 - **Input:** Pill-shaped with glowing cyan focus ring
+
+## Live Link
+
+Go on this link below to check my app:
+
+https://todo-app-tau-opal-20.vercel.app/
