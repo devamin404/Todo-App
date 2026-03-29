@@ -14,10 +14,11 @@
 .todoFormContainer {
   margin-top: 2rem;
   display: flex;
+  gap: 0.5rem;
   justify-content: center;
   align-items: center;
   max-width: 800px;
-  width: 96%;
+  width: 95%;
 }
 
 .todoInput {
@@ -42,8 +43,7 @@
 }
 
 .todoBtn {
-  padding: 1.1rem 2rem;
-  margin-left: -6.7rem;
+  padding: 1rem 2.6rem;
   font-size: 1.1rem;
   font-weight: bold;
   background-color: rgb(0, 255, 234);

@@ -1,8 +1,14 @@
 import styles from "./TodoForm.module.css";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function TodoForm({ setTodos }) {
   const [title, setTitle] = useState("");
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!title.trim()) {
@@ -17,6 +23,7 @@ function TodoForm({ setTodos }) {
     setTodos((prev) => [...prev, newTodo]);
     setTitle("");
   }
+
   return (
     <form className={styles.todoForm} onSubmit={handleSubmit}>
       <h1 className={styles.todoHeading}>TODO APP</h1>
@@ -27,6 +34,7 @@ function TodoForm({ setTodos }) {
           placeholder="Enter your text here and press enter"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          ref={inputRef}
         />
         <button className={styles.todoBtn}>ADD</button>
       </div>

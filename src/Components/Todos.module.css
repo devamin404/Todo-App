@@ -5,8 +5,11 @@
 }
 
 .todoList {
-  margin-top: 1.4rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  max-width: 800px;
+  width: 95%;
 }

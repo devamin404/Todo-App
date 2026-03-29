@@ -1,7 +1,7 @@
 import Todo from "./Todo";
 import styles from "./Todos.module.css";
 
-function Todos({ todos, deleteTodo, completeTodo }) {
+function Todos({ todos, deleteTodo, completeTodo, updateTodo }) {
   return (
     <section className={`${styles.todoList} ${styles.container}`}>
       {todos.map((todo) => {
@@ -12,6 +12,7 @@ function Todos({ todos, deleteTodo, completeTodo }) {
             todos={todos}
             deleteTodo={deleteTodo}
             completeTodo={completeTodo}
+            updateTodo={updateTodo}
           />
         );
       })}
