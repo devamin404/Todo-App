@@ -57,7 +57,7 @@ function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {
               setEditedTitle(title);
             }}
           >
-            <X />
+            <X color="#C40E0E" />
           </button>
         )}
 
@@ -73,7 +73,7 @@ function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {
               setIsEditing(false);
             }}
           >
-            <Save />
+            <Save color="lightgreen" />
           </button>
         ) : (
           <button className={styles.editBtn} onClick={() => setIsEditing(true)}>
