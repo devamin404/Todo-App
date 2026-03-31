@@ -15,6 +15,7 @@ function App() {
   });
 
   useEffect(() => {
+    console.log("Use effect called");
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
