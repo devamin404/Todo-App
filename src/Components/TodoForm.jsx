@@ -21,7 +21,9 @@ function TodoForm({ setTodos }) {
       title: title.trim(),
       completed: false,
     };
-    setTodos((prev) => [...prev, newTodo]);
+    setTodos((prev) => {
+      return [...prev, newTodo];
+    });
     setTitle("");
   }
 

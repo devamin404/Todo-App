@@ -1,12 +1,22 @@
 import TodoForm from "./Components/TodoForm";
 import Todos from "./Components/Todos";
 import { ToastContainer } from "react-toastify";
-
 import styles from "./App.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    try {
+      const data = localStorage.getItem("todos");
+      return data ? JSON.parse(data) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   function deleteTodo(id) {
     setTodos((prevTodos) => prevTodos.filter((item) => item.id !== id));
@@ -35,7 +45,7 @@ function App() {
   return (
     <section className={styles.container}>
       <ToastContainer pauseOnHover autoClose={2000} position="bottom-right" />
-      <TodoForm setTodos={setTodos} />
+      <TodoForm setTodos={setTodos} todos={todos} />
       <Todos
         todos={todos}
         deleteTodo={deleteTodo}
