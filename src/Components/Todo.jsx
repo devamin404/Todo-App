@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./Todo.module.css";
-import { Trash2, CircleCheck, Pencil, Save, X } from "lucide-react";
+import { Trash2, CircleCheck, Pencil, Save, X, LogIn } from "lucide-react";
+import { toast } from "react-toastify";
 
 function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -8,15 +9,14 @@ function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {
   return (
     <div className={styles.todoContainer}>
       {isEditing ? (
-        <input
-          type="text"
+        <textarea
           className={styles.editedTodo}
           value={editedTitle}
           onChange={(e) => setEditedTitle(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               if (!editedTitle.trim()) {
-                alert("Enter a valid todo!");
+                toast.error("Enter a valid todo!");
                 return;
               }
               updateTodo(id, editedTitle);
@@ -30,22 +30,34 @@ function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {
           }}
         />
       ) : (
-        <p className={completed ? styles.completed : ""}>{title}</p>
+        <p
+          className={completed ? styles.completed : ""}
+          onDoubleClick={() => {
+            setIsEditing(true);
+          }}
+        >
+          {title}
+        </p>
       )}
 
       <div className={styles.btnContainer}>
         {!isEditing && (
           <button
             className={completed ? styles.checked : styles.completeBtn}
-            onClick={() => completeTodo(id)}
+            onClick={() => {
+              completeTodo(id);
+              if (navigator.vibrate) {
+                navigator.vibrate(100);
+              }
+            }}
           >
-            <CircleCheck />
+            <CircleCheck color="#75e775" />
           </button>
         )}
 
         {!isEditing && (
           <button className={styles.deleteBtn} onClick={() => deleteTodo(id)}>
-            <Trash2 />
+            <Trash2 color="#C40E0E" />
           </button>
         )}
 
@@ -57,7 +69,7 @@ function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {
               setEditedTitle(title);
             }}
           >
-            <X color="#C40E0E" />
+            <X color="#C40E0E" size={30} />
           </button>
         )}
 
@@ -66,7 +78,7 @@ function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {
             className={styles.saveBtn}
             onClick={() => {
               if (!editedTitle.trim()) {
-                alert("Enter a valid todo!");
+                toast.error("Enter a valid todo!");
                 return;
               }
               updateTodo(id, editedTitle);
@@ -77,7 +89,7 @@ function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {
           </button>
         ) : (
           <button className={styles.editBtn} onClick={() => setIsEditing(true)}>
-            <Pencil />
+            <Pencil color="#ccc" />
           </button>
         )}
       </div>

@@ -1,5 +1,6 @@
 import TodoForm from "./Components/TodoForm";
 import Todos from "./Components/Todos";
+import { ToastContainer } from "react-toastify";
 
 import styles from "./App.module.css";
 import { useState } from "react";
@@ -30,8 +31,10 @@ function App() {
       }),
     );
   }
+
   return (
     <section className={styles.container}>
+      <ToastContainer pauseOnHover autoClose={2000} position="bottom-right" />
       <TodoForm setTodos={setTodos} />
       <Todos
         todos={todos}

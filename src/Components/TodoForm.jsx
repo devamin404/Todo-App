@@ -1,5 +1,6 @@
 import styles from "./TodoForm.module.css";
 import { useEffect, useState, useRef } from "react";
+import { toast } from "react-toastify";
 
 function TodoForm({ setTodos }) {
   const [title, setTitle] = useState("");
@@ -12,7 +13,7 @@ function TodoForm({ setTodos }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!title.trim()) {
-      alert("Enter a valid todo!");
+      toast.error("Enter a valid todo!");
       return;
     }
     const newTodo = {
