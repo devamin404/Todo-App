@@ -1,5 +1,6 @@
 import TodoForm from "./Components/TodoForm";
 import Todos from "./Components/Todos";
+import Stats from "./Components/Stats";
 import { ToastContainer } from "react-toastify";
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
@@ -15,7 +16,6 @@ function App() {
   });
 
   useEffect(() => {
-    console.log("Use effect called");
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
@@ -47,6 +47,7 @@ function App() {
     <section className={styles.container}>
       <ToastContainer pauseOnHover autoClose={2000} position="bottom-right" />
       <TodoForm setTodos={setTodos} todos={todos} />
+      <Stats todos={todos} />
       <Todos
         todos={todos}
         deleteTodo={deleteTodo}
