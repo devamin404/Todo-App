@@ -48,6 +48,7 @@
 }
 
 .progressContainer {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,5 +82,17 @@ span {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .progressContainer {
+    margin: 1.5rem 0;
+    gap: 0.5rem;
+  }
+
+  .progressContainer span,
+  .progressHeading {
+    font-size: 1.6rem;
   }
 }
