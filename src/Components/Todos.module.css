@@ -13,3 +13,9 @@
   max-width: 800px;
   width: 95%;
 }
+
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+}

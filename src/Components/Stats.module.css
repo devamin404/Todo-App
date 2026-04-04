@@ -1,16 +1,22 @@
 .statContainer {
   max-width: 1500px;
   width: 90%;
-  margin: 1rem auto;
+  margin: 3rem auto;
 }
 
 .statsHeading,
 .progressHeading {
   color: rgb(0, 255, 234);
-  text-align: center;
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 0.1rem;
+}
+
+.statsIntro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .statsContainer {
@@ -23,15 +29,17 @@
 
 .statCard {
   flex: 1;
-  background: #1b19199f;
+  background: #1a18189f;
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .statCard:hover {
-  transform: scale(1.1);
+  transform: translateY(-6px) scale(1.02);
   cursor: pointer;
 }
 
@@ -40,7 +48,7 @@
 }
 
 .completed {
-  color: lime;
+  color: #00ff88;
 }
 
 .pending {
@@ -53,11 +61,11 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 1.5rem;
+  margin: 2.5rem 1.5rem;
 }
 
 span {
-  color: rgb(0, 255, 234);
+  color: white;
   font-size: 2rem;
   font-weight: bold;
 }
@@ -65,7 +73,7 @@ span {
 .progressBar {
   width: 100%;
   height: 8px;
-  background: #222;
+  background-color: #222;
   border-radius: 16px;
   margin-top: 1rem;
   overflow: hidden;
@@ -73,7 +81,7 @@ span {
 
 .progress {
   height: 100%;
-  background: #00ffd5;
+  background: linear-gradient(90deg, #00ffd5, #00bfff);
   transition: width 0.3s ease;
 }
 
@@ -85,10 +93,14 @@ span {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .progressContainer {
     margin: 1.5rem 0;
     gap: 0.5rem;
+  }
+
+  .statsHeading {
+    font-size: 1.6rem;
   }
 
   .progressContainer span,

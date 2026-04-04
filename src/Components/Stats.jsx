@@ -1,4 +1,5 @@
 import styles from "./Stats.module.css";
+import { ChartNoAxesCombined } from "lucide-react";
 
 function Stats({ todos }) {
   const totalTodos = todos.length;
@@ -10,8 +11,10 @@ function Stats({ todos }) {
 
   return (
     <section className={styles.statContainer}>
-      <h1 className={styles.statsHeading}>Stats</h1>
-
+      <div className={styles.statsIntro}>
+        <ChartNoAxesCombined color="#32d2bf" />
+        <h1 className={styles.statsHeading}>Stats</h1>
+      </div>
       <div className={styles.statsContainer}>
         <div className={styles.statCard}>
           <h3>Total Todos</h3>

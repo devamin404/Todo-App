@@ -1,0 +1,44 @@
+.filterContainer {
+  max-width: 1500px;
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.filterHeading {
+  color: rgb(0, 255, 234);
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.filterIntro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+select {
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  background: #111;
+  color: white;
+  border: 2px solid #333;
+  outline: none;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+}
+
+select:focus {
+  border-color: rgb(0, 255, 234);
+}
+
+select:hover {
+  background-color: #1e1c1c;
+}
+
+@media (max-width: 450px) {
+  .filterHeading {
+    font-size: 1.6rem;
+  }
+}
