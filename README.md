@@ -1,8 +1,6 @@
-# Project Title
+# Todo App
 
-Todo App
-
-A clean, modern, and fully responsive **Todo App** built with **React**, **CSS Modules**, and **Local Storage**, featuring a sleek dark UI with cyan accent colors, toast notifications, and haptic feedback.
+A React todo application built with CSS Modules and local storage. The app uses a dark UI with cyan accents, supports inline editing, filtering, completion tracking, stats, toast validation, and responsive mobile behavior.
 
 🌐 **Live Demo:** [todo-app-tau-opal-20.vercel.app](https://todo-app-tau-opal-20.vercel.app/)
 
@@ -12,60 +10,69 @@ A clean, modern, and fully responsive **Todo App** built with **React**, **CSS M
 
 ### Core Functionality
 
-- **Add Todos** — Type a task and press Enter or click ADD button
-- **Complete Todos** — Toggle tasks as done with strikethrough effect and green checkmark
-- **Delete Todos** — Remove individual tasks instantly with red trash icon
-- **Edit Todos** — Double-click any todo or click the pencil icon to edit inline
-- **Persistent Storage** — All todos are saved to browser's Local Storage and persist across sessions
+- **Add Todos** — Type a task and click ADD to create a new todo.
+- **Complete Todos** — Toggle a todo as complete with the CircleCheck button.
+- **Delete Todos** — Remove a todo with the trash button.
+- **Edit Todos** — Double-click a todo or click the pencil icon to edit inline.
+- **Filter Todos** — View all, completed, or pending todos with the dropdown filter.
+- **Persistent Storage** — Todos are saved in browser local storage under the `todos` key.
 
 ### User Experience
 
-- **Auto Focus** — Input field automatically focuses when app loads for instant typing
-- **Toast Notifications** — Beautiful error messages for invalid inputs using React Toastify
-- **Haptic Feedback** — Subtle vibration on mobile devices when completing a todo
-- **Double-Click to Edit** — Quick inline editing by double-clicking any todo text
-- **Keyboard Shortcuts:**
-  - `Enter` — Save edited todo
-  - `Escape` — Cancel editing and revert changes
-- **Input Validation** — Prevents adding or saving empty/whitespace-only todos
+- **Auto Focus** — The input focuses automatically when the app loads.
+- **Validation Toasts** — Empty or whitespace-only todos show an error toast.
+- **Inline Edit Controls** — Save with the check button or Enter, cancel with X or Escape.
+- **Mobile Vibration** — Completing a todo triggers `navigator.vibrate(100)` when supported.
+- **Empty States** — The list shows specific messages when there are no todos, completed todos, or pending todos.
+
+### Stats and Progress
+
+- **Total Todos** — Displays the total number of todos.
+- **Completed Count** — Shows how many todos are done.
+- **Pending Count** — Shows how many todos still need attention.
+- **Progress Bar** — Visualizes completion percentage.
 
 ### Design & Responsiveness
 
-- **Fully Responsive** — Optimized layouts for mobile (< 550px), tablet, and desktop
-- **Mobile-First Design** — Enhanced button UIs on mobile with colored backgrounds and full-width layout
-- **Smooth Transitions** — Polished hover effects and button interactions
-- **Accessible Typography** — Improved letter spacing (1.5px) for better readability
+- **Dark Theme** — Uses a dark background with cyan accent color.
+- **Responsive Layout** — Adapts to smaller screens with stacked layouts and full-width controls.
+- **Readable Todo Text** — Todo text uses wider letter spacing and wraps cleanly.
+- **Mobile-Friendly Actions** — Buttons become larger and easier to tap on narrow screens.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **React 19** — UI library & component architecture
-- **CSS Modules** — Scoped, maintainable styling per component
-- **React Hooks** — `useState`, `useEffect`, `useRef` for state & lifecycle management
-- **Local Storage API** — Browser-based persistent data storage
-- **React Toastify** — Toast notification library for user feedback
-- **Lucide React** — Modern icon library (CircleCheck, Trash2, Pencil, Save, X icons)
-- **Vite** — Lightning-fast build tool & dev server
-- **`crypto.randomUUID()`** — Native browser API for unique ID generation
+- **React 19** — UI library and component model.
+- **Vite** — Development server and production build tool.
+- **CSS Modules** — Scoped styles for each component.
+- **React Hooks** — `useState`, `useEffect`, and `useRef`.
+- **Local Storage API** — Saves todos in the browser.
+- **React Toastify** — Displays validation toasts.
+- **Lucide React** — Provides the icons used in the UI.
+- **`crypto.randomUUID()`** — Generates unique IDs for new todos.
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 src/
-├── App.jsx                      # Root component, state management & handlers
-├── App.module.css               # Root layout styles
-├── index.css                    # Global reset & base styles
-├── main.jsx                     # React DOM entry point
+├── App.jsx                  # Root component, todo state, filtering, persistence
+├── App.module.css           # Main layout styles
+├── index.css                # Global reset and base styles
+├── main.jsx                 # React entry point
 └── Components/
-    ├── TodoForm.jsx             # Input form with auto-focus
-    ├── TodoForm.module.css      # Form styles
-    ├── Todos.jsx                # Todo list container
-    ├── Todos.module.css         # List styles
-    ├── Todo.jsx                 # Individual todo item with edit mode
-    └── Todo.module.css          # Todo item & button styles
+    ├── TodoForm.jsx         # Add-todo form with auto focus and validation
+    ├── TodoForm.module.css  # Form styles
+    ├── Stats.jsx            # Totals, counts, and progress bar
+    ├── Stats.module.css     # Stats section styles
+    ├── Filter.jsx           # All / completed / pending selector
+    ├── Filter.module.css    # Filter section styles
+    ├── Todos.jsx            # Empty states and todo list container
+    ├── Todos.module.css     # List styles
+    ├── Todo.jsx             # Single todo item with edit, complete, delete
+    └── Todo.module.css      # Todo item styles
 ```
 
 ---
@@ -75,25 +82,19 @@ src/
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) v16 or higher
-- npm or yarn
+- npm
 
 ### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/your-username/todo-app.git
-
-# Navigate into the project directory
 cd todo-app
-
-# Install dependencies
 npm install
 ```
 
 ### Running the App
 
 ```bash
-# Start the development server
 npm run dev
 ```
 
@@ -111,193 +112,111 @@ npm run build
 
 ### 1. `main.jsx` — Entry Point
 
-React's entry point that mounts the entire app into the `#root` div from `index.html`.
+The app is mounted into the `#root` element from `index.html`.
 
----
+### 2. `App.jsx` — State Owner
 
-### 2. `App.jsx` — The Brain 🧠
+`App.jsx` keeps the main todo state and the active filter. It also handles persistence to local storage.
 
-**Single source of truth** for the entire application. Manages the `todos` state — an array of todo objects:
+Each todo object has this shape:
 
 ```js
 {
-  id: "a3f1c...",        // Unique UUID
-  title: "Learn React",  // User's todo text
-  completed: false       // Completion status
+  id: "a3f1c...",
+  title: "Learn React",
+  completed: false,
 }
 ```
 
 #### State Management
 
-- **Initial State with Local Storage:**
-
-  ```js
-  const [todos, setTodos] = useState(() => {
-    try {
-      const data = localStorage.getItem("todos");
-      return data ? JSON.parse(data) : [];
-    } catch {
-      return [];
-    }
-  });
-  ```
-
-  Uses lazy initialization to load todos from Local Storage on mount, with error handling for corrupted data.
-
-- **Persistent Storage:**
-  ```js
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-  ```
-  Automatically saves todos to Local Storage whenever the state changes.
+- **Todo loading** — `useState` lazily reads and parses `localStorage.getItem("todos")`.
+- **Todo saving** — `useEffect` writes the full todo array back to local storage whenever it changes.
+- **Filtering** — The active filter is stored in state and used to derive `filteredTodos`.
 
 #### Handler Functions
 
-- **`deleteTodo(id)`** — Filters out the todo with matching ID
-- **`completeTodo(id)`** — Toggles the `completed` boolean for the matching todo
-- **`updateTodo(id, newTitle)`** — Updates the `title` of the matching todo with edited text
+- **`deleteTodo(id)`** — Removes a todo by ID.
+- **`completeTodo(id)`** — Toggles the `completed` flag.
+- **`updateTodo(id, newTitle)`** — Updates the todo title after editing.
 
-Renders `<TodoForm />` for adding todos and `<Todos />` for displaying them.
+### 3. `TodoForm.jsx` — Adding Todos
 
----
+This component manages the controlled input for creating todos.
 
-### 3. `TodoForm.jsx` — Adding a Todo ➕
+Flow:
 
-Manages local `title` state for controlled input. Uses `useRef` and `useEffect` to **auto-focus** the input field on component mount.
+1. The input focuses automatically on mount.
+2. The user types a todo title.
+3. Submitting the form validates the text.
+4. Valid input creates a new todo with `crypto.randomUUID()`.
+5. The new todo is appended to state through `setTodos`.
+6. The input is cleared after submit.
 
-#### Flow:
+If the input is empty or whitespace-only, the app shows a toast error and does not add the todo.
 
-1. User types → `title` state updates via `onChange`
-2. User submits (Enter or ADD button) → `handleSubmit` fires
-3. Validation: If empty/whitespace → Toast error appears
-4. Valid input → Creates new todo object with UUID and `completed: false`
-5. Appends to todos array via `setTodos`
-6. Clears input field
+### 4. `Stats.jsx` — Counts and Progress
 
-**Toast Integration:**
+This component calculates total, completed, and pending todo counts from the todo array and displays a progress bar based on completion percentage.
 
-```js
-if (!title.trim()) {
-  toast.error("Enter a valid todo!");
-  return;
-}
-```
+### 5. `Filter.jsx` — Status Filtering
 
----
+This component lets the user switch between `all`, `completed`, and `pending` todos.
 
-### 4. `Todos.jsx` — The List Container 📋
+### 6. `Todos.jsx` — List and Empty States
 
-Receives `todos` array and handler functions as props. Maps over todos and renders a `<Todo />` component for each item, passing down all necessary props.
+This component renders the filtered list and shows context-aware empty-state messages when there are no todos for the selected view.
 
----
+### 7. `Todo.jsx` — Single Todo Item
 
-### 5. `Todo.jsx` — Individual Todo Item 🃏
+Each todo item supports:
 
-**Most feature-rich component** with two local states:
+- completion toggling
+- deletion
+- inline editing through a textarea
+- saving edits with Enter or the save button
+- canceling edits with Escape or the X button
 
-- `isEditing` — Toggles between view and edit mode
-- `editedTitle` — Tracks edited text in textarea
-
-#### Features:
-
-**Complete Button (`CircleCheck`):**
-
-- Toggles `completed` status
-- Triggers haptic feedback on mobile: `navigator.vibrate(100)`
-- Icon turns green when completed
-- Title gets strikethrough styling
-
-**Delete Button (`Trash2`):**
-
-- Calls `deleteTodo(id)` to remove todo
-- Red color on hover
-
-**Edit Mode:**
-
-- **Trigger:** Double-click on todo text or click pencil icon
-- Replaces `<p>` with `<textarea>` pre-filled with current title
-- **Save:** Click Save icon or press Enter
-- **Cancel:** Click X icon or press Escape
-- Validation: Shows toast error for empty input
-
-**Keyboard Shortcuts:**
-
-```js
-onKeyDown={(e) => {
-  if (e.key === "Enter") {
-    // Save logic
-  }
-  if (e.key === "Escape") {
-    // Cancel logic
-  }
-}}
-```
+When a todo is completed, the app also triggers mobile vibration if the browser supports it.
 
 ---
 
-### 🔄 Complete Data Flow
+## 💾 Local Storage
 
-```
-main.jsx
-  └── App.jsx
-       ├── Loads todos from Local Storage on mount
-       ├── Saves todos to Local Storage on every change
-       ├── Manages todos state & handlers
-       │
-       ├── <TodoForm />
-       │    └── Adds new todo → calls setTodos
-       │
-       └── <Todos />
-            └── <Todo /> × N
-                 ├── Calls deleteTodo(id)
-                 ├── Calls completeTodo(id) + vibrate
-                 └── Calls updateTodo(id, newTitle)
-```
+### Saving
 
-> **Key Concept:** Unidirectional data flow — state flows **down** via props, actions flow **up** via callback functions. Only `App.jsx` directly modifies the `todos` state.
+- Todos are saved after every change through a `useEffect` in `App.jsx`.
+- The full array is stringified and stored under the `todos` key.
 
----
+### Loading
 
-## 💾 Local Storage Implementation
+- Todos are loaded once during the initial state setup.
+- If parsing fails or storage is unavailable, the app falls back to an empty array.
 
-### Saving Strategy
+### Why It Helps
 
-- **Trigger:** `useEffect` with `[todos]` dependency
-- **Action:** Stringifies and saves entire todos array on every state change
-- **Key:** `"todos"`
-
-### Loading Strategy
-
-- **Trigger:** Lazy state initialization in `useState`
-- **Action:** Parses stored JSON or returns empty array
-- **Error Handling:** Returns `[]` if data is corrupted or unavailable
-
-### Benefits
-
-- ✅ Todos persist across browser sessions
-- ✅ Works offline (no backend required)
-- ✅ Instant load times
-- ✅ Privacy-focused (data stays local)
+- Todos survive page reloads and browser restarts.
+- The app works without a backend.
+- Data stays on the user’s device.
 
 ---
 
 ## 🎯 User Interactions Summary
 
-| Action               | Desktop                           | Mobile                   |
-| -------------------- | --------------------------------- | ------------------------ |
-| **Add Todo**         | Type + Enter / Click ADD          | Same                     |
-| **Edit Todo**        | Double-click text / Click pencil  | Same                     |
-| **Save Edit**        | Enter key / Click Save icon       | Same                     |
-| **Cancel Edit**      | Escape key / Click X icon         | Same                     |
-| **Complete Todo**    | Click CircleCheck                 | Click + Haptic vibration |
-| **Delete Todo**      | Click Trash2                      | Same                     |
-| **Input Focus**      | Auto-focused on load              | Same                     |
-| **Validation Error** | Toast notification (bottom-right) | Same                     |
+| Action            | Behavior                                             |
+| ----------------- | ---------------------------------------------------- |
+| **Add Todo**      | Type a title and click ADD.                          |
+| **Edit Todo**     | Double-click the text or click the pencil icon.      |
+| **Save Edit**     | Press Enter or click the save button.                |
+| **Cancel Edit**   | Press Escape or click the X button.                  |
+| **Complete Todo** | Click the CircleCheck button.                        |
+| **Delete Todo**   | Click the trash button.                              |
+| **Filter Todos**  | Choose All, Completed, or Pending from the dropdown. |
+| **Validation**    | Empty input shows a toast error.                     |
 
 ## 👨‍💻 Author
 
-Built with ❤️ by Muhammad Amin
+Built with ❤️ by Muhammad Amin.
 
 **Connect with me:**
 
