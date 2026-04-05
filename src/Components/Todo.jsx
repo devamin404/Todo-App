@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./Todo.module.css";
-import { Trash2, CircleCheck, Pencil, Save, X, LogIn } from "lucide-react";
+import { Trash2, CircleCheck, Pencil, Save, X } from "lucide-react";
 import { toast } from "react-toastify";
 
 function Todo({ title, id, completed, deleteTodo, completeTodo, updateTodo }) {

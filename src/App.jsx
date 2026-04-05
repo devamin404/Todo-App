@@ -1,9 +1,9 @@
 import TodoForm from "./Components/TodoForm";
 import Todos from "./Components/Todos";
 import Stats from "./Components/Stats";
-import Filter from "./Filter";
-import { ToastContainer } from "react-toastify";
+import Filter from "./Components/Filter";
 import styles from "./App.module.css";
+import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 
 function App() {
