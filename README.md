@@ -1,8 +1,8 @@
-# Todo App
+# Listivo
 
 A React todo application built with CSS Modules and local storage. The app uses a dark UI with cyan accents, supports inline editing, filtering, completion tracking, stats, toast validation, and responsive mobile behavior.
 
-🌐 **Live Demo:** [todo-app-tau-opal-20.vercel.app](https://todo-app-tau-opal-20.vercel.app/)
+🌐 **Live Demo:** [todo-app-tau-opal-20.vercel.app](https://listivo.vercel.app/)
 
 ---
 
@@ -87,7 +87,7 @@ src/
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/todo-app.git
+git clone hhttps://github.com/devamin404/Listivo.git
 cd todo-app
 npm install
 ```
@@ -220,6 +220,6 @@ Built with ❤️ by Muhammad Amin.
 
 **Connect with me:**
 
-- GitHub: https://github.com/devamin404/Todo-App.git
+- GitHub: https://github.com/devamin404/Listivo.git
 - LinkedIn: www.linkedin.com/in/muhammad-amin-989269398
-- Live Demo: [todo-app-tau-opal-20.vercel.app](https://todo-app-tau-opal-20.vercel.app/)
+- Live Demo: [todo-app-tau-opal-20.vercel.app](https://listivo.vercel.app/)
